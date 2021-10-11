@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useMovies} from "./hooks/useMovies";
 import MoviesTable from "./components/MoviesTable";
-import {AppBar, Box, CircularProgress, Container, Pagination, Toolbar} from "@mui/material";
+import {AppBar, Box, CircularProgress, Container, Link, Pagination, Toolbar, Typography} from "@mui/material";
 import Comments from "./components/Comments";
 
 function App() {
@@ -10,7 +10,10 @@ function App() {
     const {movies, status, quantity} = useMovies(page)
     return (
         <>
-            <AppBar position="sticky"><Toolbar>Тестовое задание Frontend JS/TS</Toolbar></AppBar>
+            <AppBar position="sticky"><Toolbar sx={{flexWrap: "wrap"}}>
+                <Typography variant={"h5"} sx={{flexGrow: 1}}>Тестовое задание Frontend JS/TS</Typography>
+                <Link color="text.secondary" href="https://github.com/ekinohito/bigdata-emg">@ekinohito/bigdata-emg</Link>
+            </Toolbar></AppBar>
             <Container>
                 <Box display="flex" flexDirection="column" alignItems="center" sx={{"> *": {mt: 2}}}>
                     {quantity && <Pagination
