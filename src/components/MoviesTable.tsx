@@ -3,7 +3,7 @@ import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow}
 import MovieRow from "./MovieRow";
 import {Movie} from "../types/Movie";
 
-export default function MoviesTable(props: { movies: Movie[] }) {
+export default function MoviesTable(props: { movies: Movie[], setOpen: React.Dispatch<React.SetStateAction<number | null>> }) {
     return <TableContainer component={Paper}>
         <Table size="small">
             <TableHead>
@@ -13,11 +13,12 @@ export default function MoviesTable(props: { movies: Movie[] }) {
                     <TableCell>title</TableCell>
                     <TableCell>year</TableCell>
                     <TableCell align="right">rating</TableCell>
+                    <TableCell align="right">comments</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
                 {props.movies.map((movie) => (
-                    <MovieRow key={movie.id} movie={movie}/>
+                    <MovieRow key={movie.id} movie={movie} openComments={() => props.setOpen(movie.id)}/>
                 ))}
             </TableBody>
         </Table>

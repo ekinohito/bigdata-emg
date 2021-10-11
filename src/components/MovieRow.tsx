@@ -1,8 +1,9 @@
 import React from 'react'
-import {Link, Rating, TableCell, TableRow} from "@mui/material";
+import {IconButton, Link, Rating, TableCell, TableRow} from "@mui/material";
 import {Movie} from "../types/Movie";
+import {Comment} from "@mui/icons-material";
 
-export default function MovieRow(props: {movie: Movie}) {
+export default function MovieRow(props: {movie: Movie, openComments: () => any}) {
     return <TableRow
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
     >
@@ -19,5 +20,6 @@ export default function MovieRow(props: {movie: Movie}) {
         <TableCell>{props.movie.title}</TableCell>
         <TableCell>{props.movie.year}</TableCell>
         <TableCell align="right"><Rating value={props.movie.rating / 2} readOnly precision={0.1}/></TableCell>
+        <TableCell align="right"><IconButton onClick={props.openComments}><Comment/></IconButton></TableCell>
     </TableRow>
 }
