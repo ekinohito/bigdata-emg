@@ -4,9 +4,7 @@ import {Movie} from "../types/Movie";
 import {Comment} from "@mui/icons-material";
 
 export default function MovieRow(props: {movie: Movie, openComments: () => any}) {
-    return <TableRow
-        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-    >
+    return <TableRow>
         <TableCell sx={{display: {xs: 'none', sm: 'table-cell'}}} component="th" scope="row">
             {props.movie.id}
         </TableCell>

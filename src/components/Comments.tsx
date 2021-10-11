@@ -4,14 +4,15 @@ import {
     Dialog,
     DialogActions,
     DialogContent,
-    DialogTitle,
+    DialogTitle, IconButton,
     List, ListItem,
     TextField
 } from "@mui/material";
 import {useComments} from "../hooks/useComments";
+import {Delete} from "@mui/icons-material";
 
 export default function Comments(props: { open: number | null, setOpen: React.Dispatch<React.SetStateAction<number | null>> }) {
-    const {comments, addComments} = useComments(props.open || 0)
+    const {comments, addComments, deleteComments} = useComments(props.open || 0)
     const [text, setText] = useState('')
     useEffect(() => {
         setText('')
@@ -20,7 +21,10 @@ export default function Comments(props: { open: number | null, setOpen: React.Di
         <DialogTitle>Комментарии</DialogTitle>
         <DialogContent>
             <List>
-                {comments.map(comment => <ListItem key={comment.id}>{comment.value}</ListItem>)}
+                {comments.map(comment => <ListItem key={comment.id}>
+                    {comment.text}
+                    <IconButton onClick={() => deleteComments(comment.id)}><Delete/></IconButton>
+                </ListItem>)}
             </List>
         </DialogContent>
         <DialogActions>

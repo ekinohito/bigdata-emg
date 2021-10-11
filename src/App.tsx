@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useMovies} from "./hooks/useMovies";
 import MoviesTable from "./components/MoviesTable";
-import {AppBar, Box, Button, CircularProgress, Container, Pagination, Toolbar} from "@mui/material";
+import {AppBar, Box, CircularProgress, Container, Pagination, Toolbar} from "@mui/material";
 import Comments from "./components/Comments";
 
 function App() {
@@ -22,7 +22,6 @@ function App() {
                     {(status === "none" || status === "fetching") && <CircularProgress/>}
                 </Box>
             </Container>
-            <Button onClick={() => setOpen(1)}>XD</Button>
             <Comments open={open} setOpen={setOpen}/>
         </>
 
