@@ -1,14 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useMovies} from "./hooks/useMovies";
+import MoviesTable from "./components/MoviesTable";
+import {AppBar, Box, CircularProgress, Container, Pagination, Toolbar} from "@mui/material";
 
 function App() {
-    const {movies} = useMovies(1)
+    const [page, setPage] = useState(1)
+    const {movies, status, quantity} = useMovies(page)
     return (
-        <div>
-            <ol>
-                {movies.map(movie => <li>{movie.title}</li>)}
-            </ol>
-        </div>
+        <>
+            <AppBar position="sticky"><Toolbar>Тестовое задание Frontend JS/TS</Toolbar></AppBar>
+            <Container>
+                <Box display="flex" flexDirection="column" alignItems="center" sx={{"> *": {mt: 2}}}>
+                    {quantity && <Pagination
+                        page={page}
+                        onChange={(event, page) => setPage(page)}
+                        count={Math.ceil(quantity / 20)} />}
+                    {status === "ok" && <MoviesTable
+                        movies={movies}/>}
+                    {(status === "none" || status === "fetching") && <CircularProgress/>}
+                </Box>
+            </Container>
+        </>
+
     );
 }
 
